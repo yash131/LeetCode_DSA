@@ -1,25 +1,19 @@
 class Solution {
     public int singleNumber(int[] nums) 
     {
-        int c=0;
-        int k =0;
-        for (int x = 0 ; x<nums.length;x++)
+        HashMap<Integer,Integer> m = new HashMap<>();
+
+        for (int n : nums)
         {
-            c=0;
-        for(int y = 0 ; y <nums.length ;y++)
+            m.put(n,m.getOrDefault(n,0)+1);
+        }
+        for (int n :nums)
         {
-            if (nums[x]==nums[y])
+            if (m.get(n)==1)
             {
-                c++;
+                return n;
             }
         }
-        if (c==1)
-        {
-            k=nums[x];
-            break;
-        }
-        }
-        return k;
-        
+        return -1;
     }
 }
