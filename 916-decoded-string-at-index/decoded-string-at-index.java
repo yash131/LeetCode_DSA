@@ -1,35 +1,39 @@
 class Solution {
-    public String decodeAtIndex(String s, int k) {
-        long size = 0;
+    public String decodeAtIndex(String s, int k) 
+    {
+        long ss = 0;
 
-        // Step 1: Calculate decoded string length
-        for (int i = 0; i < s.length(); i++) {
-            char ch = s.charAt(i);
+        for (int x = 0 ;x<s.length();x++)
+        {
+            char ch = s.charAt(x);
+            if (Character.isDigit(ch))
+            {
+                ss = ss*(ch -'0');
 
-            if (Character.isDigit(ch)) {
-                size *= ch - '0';
-            } else {
-                size++;
+            }
+            else
+            {
+                ss=ss+1;
             }
         }
 
-        // Step 2: Find the kth character backward
-        for (int i = s.length() - 1; i >= 0; i--) {
-            char ch = s.charAt(i);
-
-            k %= size;
-
-            if (Character.isDigit(ch)) {
-                size /= ch - '0';
-            } else {
-                if (k == 0) {
+        for (int x =s.length()-1;x>=0;x--)
+        {
+            char ch = s.charAt(x);
+            k = (int) (k % ss);
+            if (Character.isDigit(ch))
+            {
+                ss= ss/(ch-'0');
+            }
+            else
+            {
+                if (k==0)
+                {
                     return String.valueOf(ch);
                 }
-
-                size--;
+                ss--;
             }
         }
-
         return "";
     }
 }
