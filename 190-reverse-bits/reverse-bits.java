@@ -1,13 +1,12 @@
 class Solution {
-    public int reverseBits(int n) 
-    {
-        String b = Integer.toBinaryString(n);
-         while (b.length() < 32) {
-            b = "0" + b;
+    public int reverseBits(int n) {
+        int result = 0;
+
+        for (int i = 0; i < 32; i++) {
+            result = (result << 1) | (n & 1);
+            n = n >>> 1;
         }
-        String reversed = new StringBuilder(b).reverse().toString();
-        int decimal = Integer.parseInt(reversed, 2);
-        return decimal;
-        
+
+        return result;
     }
 }
